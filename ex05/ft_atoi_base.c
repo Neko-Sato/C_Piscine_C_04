@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:05:15 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/15 20:18:00 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/23 06:45:27 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int	str_index(char c, char *str)
 
 int	ft_atoi_base(char *str, char *base)
 {
-	int	sgin;
+	int	sign;
 	int	result;
 	int	base_length;
 	int	temp;
 
-	sgin = 1;
+	sign = 1;
 	result = 0;
 	base_length = ft_strlduplicate(base);
 	if (base_length <= 1)
@@ -57,15 +57,15 @@ int	ft_atoi_base(char *str, char *base)
 		str++;
 	while (*str == '+' || *str == '-')
 		if (*(str++) == '-')
-			sgin *= -1;
+			sign *= -1;
 	while (*str)
 	{
 		temp = str_index(*str, base) - 1;
 		if (temp < 0)
-			return (0);
+			break ;
 		result *= base_length;
 		result += temp;
 		str++;
 	}
-	return (sgin * result);
+	return (sign * result);
 }
